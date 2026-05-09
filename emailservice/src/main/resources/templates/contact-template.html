@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Contato</title>
+</head>
+<body>
+
+    <h2>Novo formulário de contato</h2>
+
+    <p>
+        <strong>Nome:</strong>
+        <span th:text="${name}"></span>
+    </p>
+
+    <p>
+        <strong>Email:</strong>
+        <span th:text="${email}"></span>
+    </p>
+
+    <p>
+        <strong>Mensagem:</strong>
+        <span th:text="${message}"></span>
+    </p>
+
+</body>
+</html>

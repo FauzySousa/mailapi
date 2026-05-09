@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MailAPI | API de Envio de E-mails com Spring Boot</title>
+
+    <!-- SEO -->
+    <meta name="description"
+        content="API profissional de envio de e-mails desenvolvida com Spring Boot, Thymeleaf e Docker.">
+    <meta name="author" content="Fauzy Sousa">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <!-- Favicon -->
+    <link rel="icon" th:href="@{/images/favicon.png}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-content">
+
+            <div class="logo">
+                Mail<span>API</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#about">Recursos</a></li>
+                <li><a href="#status">Status</a></li>
+                <li><a href="#contact" class="btn-primary">Enviar Mensagem</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main>
+
+        <!-- HERO -->
+<header class="hero">
+    <div class="container">
+        <!-- Grid principal (Texto + Card de Código) -->
+        <div class="hero-grid">
+            <section class="hero-text">
+                <span class="badge">Disponível para Integração</span>
+                <h1>Sua API de e-mails, <span>simples e robusta.</span></h1>
+                <p>
+                    Solução profissional de envio de e-mails com Spring Boot, processamento assíncrono, proteção contra spam, retry inteligente e infraestrutura pronta para ambientes modernos com Docker.
+                </p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn-primary">Enviar mensagem</a>
+                    <a href="/swagger-ui.html" class="btn-secondary">
+                        <i class="ph ph-book-open"></i> Ver documentação
+                    </a>
+                </div>
+            </section>
+
+            <section class="hero-visual">
+                <div class="modern-code-card">
+                    <div class="window-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="code-content">
+                        <span class="method">POST</span>
+                        <span class="endpoint">/api/v1/emails/contact</span>
+                    </div>
+                </div>
+            </section>
+        </div> <!-- Fim da hero-grid -->
+
+        <!-- Status Bar agora alinhada dentro do container -->
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="dot pulse-green"></span>
+                <small>API Online</small>
+            </div>
+            <div class="status-item">
+                <i class="ph ph-lightning"></i>
+                <small>98ms Latência</small>
+            </div>
+            <div class="status-item">
+                <i class="ph ph-lock"></i>
+                <small>SSL Ativo</small>
+            </div>
+            <div class="status-item">
+                <i class="ph ph-cube"></i>
+                <small>Container: Stable</small>
+            </div>
+        </div>
+    </div> <!-- Fim do container -->
+</header>
+
+        <!-- FEATURES -->
+        <section id="about" class="features">
+
+            <div class="container">
+
+                <div class="section-header">
+                    <h2>Potência no Backend</h2>
+                    <p>Desenvolvido com as melhores práticas de mercado.</p>
+                </div>
+
+                <div class="feature-grid">
+
+                    <article class="card">
+                        <i class="ph ph-clock-counter-clockwise"></i>
+                        <h3>Envio Assíncrono</h3>
+                        <p>
+                            Processamento em segundo plano sem travar sua aplicação principal.
+                        </p>
+                    </article>
+
+                    <div class="card">
+                        <div class="feature-icon">
+                            <i class="ph ph-shield-warning"></i>
+                        </div>
+                        <h3>Rate Limiting</h3>
+                        <p>Proteção contra abusos e spam utilizando <strong>Bucket4j</strong>, com controle inteligente de requisições por IP.</p>
+                    </div>
+
+                    <article class="card">
+                        <i class="ph ph-repeat"></i>
+                        <h3>Retry Automático</h3>
+                        <p>
+                            Lógica de re-tentativa inteligente para falhas temporárias de conexão.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <i class="ph ph-file-code"></i>
+                        <h3>Swagger Ready</h3>
+                        <p>
+                            Documentação interativa para testes rápidos no ambiente de dev.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <!-- SVG com currentColor para herdar a cor do seu CSS -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 256 256" style="margin-bottom: 20px;">
+                            <path d="M232,104a32,32,0,0,0-32-32,8,8,0,0,0-8,8c0,13.25-10.75,24-24,24H24a8,8,0,0,0-8,8v64a32,32,0,0,0,32,32H184a32,32,0,0,0,32-32v-8.47c11.11-4.14,24-14.52,24-37.53ZM192,176a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V120H168c11,0,21.08-7.55,24-17.58V176Zm40-52c0,11.23-5,16.59-8,19.2V128a16,16,0,0,1,8-14.28A15.82,15.82,0,0,1,232,124Z"></path>
+                            <rect x="40" y="80" width="24" height="24" rx="4"></rect>
+                            <rect x="72" y="80" width="24" height="24" rx="4"></rect>
+                            <rect x="104" y="80" width="24" height="24" rx="4"></rect>
+                            <rect x="72" y="48" width="24" height="24" rx="4"></rect>
+                        </svg>
+                        
+                        <h3>Docker Ready</h3>
+                        <p>Aplicação totalmente containerizada para deploy rápido e padronizado.</p>
+                    </article>
+
+                    <article class="card">
+                        <i class="ph ph-chart-line-up"></i>
+                        <h3>Monitoramento</h3>
+                        <p>
+                            Logs detalhados e métricas de desempenho em tempo real.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- STATUS -->
+        <section id="status" class="status-section">
+
+            <div class="container">
+
+                
+
+            </div>
+
+        </section>
+
+        <!-- CONTATO -->
+        <section id="contact" class="contact-section">
+    <div class="container">
+        <div class="contact-card">
+            <!-- Coluna 1: Texto -->
+            <section class="contact-info">
+                <h2>Fale conosco</h2>
+                <p>
+                    Preencha o formulário para testar o envio de e-mail
+                    através da nossa API integrada.
+                </p>
+            </section>
+
+            <!-- Coluna 2: Formulário -->
+            <section>
+                        <form th:action="@{/api/v1/emails/contact}" th:object="${contactForm}" method="POST" id="mailForm">
+                            <div class="input-group">
+                                <label>Nome</label>
+                                <input id="name" type="text" th:field="*{name}" placeholder="Seu nome" required>
+                            </div>
+
+                            <div class="input-group">
+                                <label>E-mail</label>
+                                <input id="email" type="email" th:field="*{senderEmail}" placeholder="exemplo@email.com" required>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Mensagem</label>
+                                <textarea id="message" th:field="*{message}" rows="4" placeholder="Como podemos ajudar?" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary full-width" id="btnSubmit">
+                                <span class="btn-text">Enviar mensagem</span>
+                                <div class="loader hidden"></div>
+                            </button>
+
+                            <div id="formMessage" class="feedback hidden"></div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="container footer-content">
+
+            <p>
+                &copy; 2026 MailAPI Project.
+                Desenvolvido por <strong>Fauzy Sousa</strong>.
+            </p>
+
+            <div class="social-links">
+
+                <a
+                    href="https://github.com/seuusuario"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub">
+
+                    <i class="ph ph-github-logo"></i>
+
+                </a>
+
+                <a
+                    href="https://linkedin.com/in/seuperfil"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn">
+
+                    <i class="ph ph-linkedin-logo"></i>
+
+                </a>
+
+            </div>
+
+            <p class="tech-stack">
+                Java • Spring Boot • Thymeleaf • Docker • Swagger
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- JS -->
+    <script th:src="@{/js/script.js}"></script>
+
+</body>
+
+</html>
