@@ -1,6 +1,5 @@
-target/*
-!target/emailservice-0.0.1-SNAPSHOT.jar
+target/
 .git/
 .idea/
 .vscode/
-README.md
+*.iml
