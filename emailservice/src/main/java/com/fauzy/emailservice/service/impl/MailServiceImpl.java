@@ -1,11 +1,16 @@
 package com.fauzy.emailservice.service.impl;
 
-import java.time.LocalDateTime;
-
+import com.fauzy.emailservice.dto.ContactRequestDto;
+import com.fauzy.emailservice.dto.EmailRequestDto;
+import com.fauzy.emailservice.exception.EmailSendingException;
+import com.fauzy.emailservice.service.MailService;
+import com.resend.Resend;
+import com.resend.core.exception.ResendException;
+import com.resend.services.emails.model.CreateEmailOptions;
+import com.resend.services.emails.model.CreateEmailResponse;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.MailException;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
@@ -14,26 +19,21 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import com.fauzy.emailservice.dto.ContactRequestDto;
-import com.fauzy.emailservice.dto.EmailRequestDto;
-import com.fauzy.emailservice.exception.EmailSendingException;
-import com.fauzy.emailservice.service.MailService;
-
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.time.LocalDateTime;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class MailServiceImpl implements MailService {
 
-    private final JavaMailSender mailSender;
     private final TemplateEngine templateEngine;
 
-    // Busca a variável de ambiente ou usa o padrão do Resend para testes
-    @Value("${spring.mail.from:onboarding@resend.dev}")
+    // Pega a API Key (re_...) das variáveis da Railway
+    @Value("${resend.api.key}")
+    private String resendApiKey;
+
+    // Pega o e-mail de origem (onboarding@resend.dev)
+    @Value("${resend.from}")
     private String mailFrom;
 
     @Async("mailExecutor")
@@ -44,42 +44,40 @@ public class MailServiceImpl implements MailService {
     )
     @Override
     public void sendHtmlEmail(EmailRequestDto request) {
+        log.info("Iniciando envio via API HTTP do Resend para: {}", request.to());
 
-        log.info("Iniciando envio de e-mail via SMTP Resend para: {}", request.to());
-        
+        // Inicializa o cliente com a Key
+        Resend resend = new Resend(resendApiKey);
+
+        // Monta os parâmetros da chamada HTTP
+        CreateEmailOptions params = CreateEmailOptions.builder()
+                .from(mailFrom)
+                .to(request.to())
+                .subject(request.subject())
+                .html(request.body())
+                .build();
+
         try {
-            MimeMessage message = mailSender.createMimeMessage();
-            
-            // O 'true' indica que é um e-mail multipart (necessário para HTML)
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+            // Chamada de rede via HTTPS (Porta 443)
+            CreateEmailResponse response = resend.emails().send(params);
+            log.info("E-mail enviado com sucesso via API! ID: {}", response.getId());
 
-            helper.setFrom(mailFrom);
-            helper.setTo(request.to());
-            helper.setSubject(request.subject());
-            helper.setText(request.body(), true); // 'true' habilita a renderização HTML
-
-            mailSender.send(message);
-
-            log.info("E-mail enviado com sucesso para: {}", request.to());
-
-        } catch (MessagingException | MailException ex) {
-            log.error("Erro técnico ao tentar conectar ou enviar para {}: {}", request.to(), ex.getMessage());
-            
-            // Lançamos a nossa Exception customizada para disparar o @Retryable
-            throw new EmailSendingException("Falha no transporte do e-mail", ex);
+        } catch (ResendException e) {
+            log.error("Erro na API do Resend ao enviar para {}: {}", request.to(), e.getMessage());
+            // Lançamos a exception para o Retryable tentar novamente se necessário
+            throw new EmailSendingException("Falha na chamada da API do Resend", e);
         }
     }
 
     @Override
     public void processContactForm(ContactRequestDto contact) {
-
-        log.info("Processando novo formulário de contato de: {}", contact.name());
+        log.info("Processando formulário de contato de: {}", contact.name());
 
         String htmlContent = buildContactTemplate(contact);
 
-        // Criamos o DTO de envio usando o mailFrom autorizado (onboarding@resend.dev)
+        // No plano gratuito do Resend, envie para o seu e-mail de cadastro para testar
         EmailRequestDto emailRequest = new EmailRequestDto(
-            mailFrom, 
+            "fauzydev9@gmail.com", 
             "Novo Contato: " + contact.name(),
             htmlContent
         );
@@ -100,18 +98,14 @@ public class MailServiceImpl implements MailService {
     public void recover(EmailSendingException ex, EmailRequestDto request) {
         log.error("""
             
-            ===== FALHA CRÍTICA APÓS TENTATIVAS DE REENVIO =====
-            
+            ===== FALHA CRÍTICA APÓS TENTATIVAS (API RESEND) =====
             Data/Hora: {}
             Destinatário: {}
-            Assunto: {}
-            Causa da Falha: {}
-            
-            ====================================================
+            Causa: {}
+            =======================================================
             """,
             LocalDateTime.now(),
             request.to(),
-            request.subject(),
             ex.getMessage()
         );
     }
