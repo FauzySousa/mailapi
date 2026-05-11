@@ -32,55 +32,59 @@ public class MailServiceImpl implements MailService {
     private final JavaMailSender mailSender;
     private final TemplateEngine templateEngine;
 
-    @Value("${spring.mail.username}")
+    // Busca a variável de ambiente ou usa o padrão do Resend para testes
+    @Value("${spring.mail.from:onboarding@resend.dev}")
     private String mailFrom;
 
     @Async("mailExecutor")
-    @Retryable(retryFor = {EmailSendingException.class},
-            maxAttempts = 3,
-            backoff = @Backoff(delay = 2000, multiplier = 2)
+    @Retryable(
+        retryFor = {EmailSendingException.class},
+        maxAttempts = 3,
+        backoff = @Backoff(delay = 2000, multiplier = 2)
     )
     @Override
     public void sendHtmlEmail(EmailRequestDto request) {
 
-            log.info("enviando o e-mail para {}", request.to());
-           
-            try{
+        log.info("Iniciando envio de e-mail via SMTP Resend para: {}", request.to());
+        
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            
+            // O 'true' indica que é um e-mail multipart (necessário para HTML)
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-                MimeMessage message = mailSender.createMimeMessage();
-                MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+            helper.setFrom(mailFrom);
+            helper.setTo(request.to());
+            helper.setSubject(request.subject());
+            helper.setText(request.body(), true); // 'true' habilita a renderização HTML
 
-                helper.setFrom(mailFrom);
-                helper.setTo(request.to());
-                helper.setSubject(request.subject());
-                helper.setText(request.body(), true);
+            mailSender.send(message);
 
-                mailSender.send(message);
+            log.info("E-mail enviado com sucesso para: {}", request.to());
 
-                log.info("E-mail enviado com sucesso para: {}", request.to());
-
-            } catch(MessagingException | MailException ex) {
-
-                log.error("Erro ao enviar email para {}", request.to(), ex);
-
-                throw new EmailSendingException("Falha ao enviar email", ex);
-            }
+        } catch (MessagingException | MailException ex) {
+            log.error("Erro técnico ao tentar conectar ou enviar para {}: {}", request.to(), ex.getMessage());
+            
+            // Lançamos a nossa Exception customizada para disparar o @Retryable
+            throw new EmailSendingException("Falha no transporte do e-mail", ex);
+        }
     }
 
     @Override
     public void processContactForm(ContactRequestDto contact) {
 
-        log.info("Processando formulário de contato de {}", contact.name());
+        log.info("Processando novo formulário de contato de: {}", contact.name());
 
         String htmlContent = buildContactTemplate(contact);
 
-        EmailRequestDto request = new EmailRequestDto(
-            mailFrom,
+        // Criamos o DTO de envio usando o mailFrom autorizado (onboarding@resend.dev)
+        EmailRequestDto emailRequest = new EmailRequestDto(
+            mailFrom, 
             "Novo Contato: " + contact.name(),
             htmlContent
         );
 
-        sendHtmlEmail(request);
+        sendHtmlEmail(emailRequest);
     }
 
     private String buildContactTemplate(ContactRequestDto contact) {
@@ -96,23 +100,19 @@ public class MailServiceImpl implements MailService {
     public void recover(EmailSendingException ex, EmailRequestDto request) {
         log.error("""
             
-            ===== FALHA DEFINITIVA NO ENVIO DE E-MAIL =====
+            ===== FALHA CRÍTICA APÓS TENTATIVAS DE REENVIO =====
             
-            Timestamp: {}
+            Data/Hora: {}
             Destinatário: {}
             Assunto: {}
-            Tipo do erro: {}
-            Mensagem: {}
+            Causa da Falha: {}
             
-            ===============================================
+            ====================================================
             """,
             LocalDateTime.now(),
             request.to(),
             request.subject(),
-            ex.getClass().getSimpleName(),
             ex.getMessage()
         );
-        
     }
-
 }
