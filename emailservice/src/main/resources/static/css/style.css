@@ -457,6 +457,28 @@ textarea:focus {
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
+/* Resolve o fundo branco ao selecionar sugestões (Autofill) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+    /* Altera a cor do texto para branco */
+    -webkit-text-fill-color: #f8fafc !important;
+    
+    /* Cria um efeito que substitui a cor de fundo pelo seu tom escuro */
+    transition: background-color 5000s ease-in-out 0s;
+    
+    /* Garante que a borda continue com o estilo do seu tema */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Garante que a borda de foco continue funcionando mesmo no preenchimento automático */
+input:-webkit-autofill:focus {
+    border-color: var(--primary) !important;
+}
+
 /* Garante que o botão ocupe toda a largura da coluna do form */
 .full-width {
     width: 100%;
