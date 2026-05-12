@@ -464,25 +464,28 @@ input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus {
-    /* Força a cor do texto para branco */
+    /* Força a cor do texto para branco - usando !important duplo se necessário */
     -webkit-text-fill-color: #f8fafc !important;
+    color: #f8fafc !important;
     
-    /* Força a cor do cursor (o traço) para branco ou a cor do seu tema */
+    /* Força o cursor a ser branco */
     caret-color: #f8fafc !important;
 
-    /* Mantém o fundo escuro */
+    /* A transição mantém o fundo escuro */
     transition: background-color 5000s ease-in-out 0s;
     
-    /* Garante a borda padrão */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Remove qualquer sombra interna que possa estar pintando o fundo de preto/branco */
+    box-shadow: inset 0 0 0px 9999px transparent !important;
     
-    /* Remove sombras internas do sistema */
-    box-shadow: inset 0 0 0px 9999px transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Força a cor do texto e do cursor em estados normais também, por segurança */
-input, textarea {
-    caret-color: var(--primary); /* O traço fica na cor roxa/azul do seu tema */
+/* Garante o brilho de foco e reforça o texto branco no clique */
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15), inset 0 0 0px 9999px transparent !important;
+    -webkit-text-fill-color: #f8fafc !important;
 }
 
 /* Garante que a borda de foco continue funcionando mesmo no preenchimento automático */
