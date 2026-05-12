@@ -75,7 +75,7 @@ public class MailServiceImpl implements MailService {
 
         String htmlContent = buildContactTemplate(contact);
 
-        // No plano gratuito do Resend, envie para o seu e-mail de cadastro para testar
+        
         EmailRequestDto emailRequest = new EmailRequestDto(
             "fauzydev9@gmail.com", 
             "Novo Contato: " + contact.name(),

@@ -53,8 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }),
       });
 
-        if (response.ok) {
-
+      if (response.ok) {
         formMessage.className = "feedback success";
 
         formMessage.classList.remove("hidden");
@@ -67,11 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
         mailForm.reset();
 
         setTimeout(() => {
-            formMessage.classList.add("hidden");
+          formMessage.classList.add("hidden");
         }, 4000);
-
-    } else {
-
+      } else {
         const errorData = await response.json();
 
         formMessage.className = "feedback error";
@@ -84,25 +81,24 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
         setTimeout(() => {
-            formMessage.classList.add("hidden");
+          formMessage.classList.add("hidden");
         }, 4000);
-    }
+      }
     } catch (error) {
+      console.error(error);
 
-    console.error(error);
+      formMessage.className = "feedback error";
 
-    formMessage.className = "feedback error";
+      formMessage.classList.remove("hidden");
 
-    formMessage.classList.remove("hidden");
-
-    formMessage.innerHTML = `
+      formMessage.innerHTML = `
         <i class="ph ph-wifi-slash"></i>
         Erro de conexão com servidor
     `;
 
-    setTimeout(() => {
+      setTimeout(() => {
         formMessage.classList.add("hidden");
-    }, 4000);
+      }, 4000);
     } finally {
       btnText.textContent = "Enviar mensagem";
 

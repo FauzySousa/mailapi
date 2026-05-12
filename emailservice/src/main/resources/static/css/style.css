@@ -16,10 +16,7 @@
   box-sizing: border-box;
 }
 
-
-
 body {
-  
   font-family: "Inter", sans-serif;
   background-color: #0f182e;
   color: var(--text-main);
@@ -27,18 +24,15 @@ body {
   overflow-x: hidden;
 }
 
-
-
 .container {
-    max-width: 1100px; 
-    margin: 0 auto;
-    padding: 0 40px;
-    width: 100%; /* Garante que ocupe o espaço disponível */
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+  width: 100%;
 }
 
 /* Navbar */
 .navbar {
-
   position: relative;
 
   width: 100%;
@@ -88,31 +82,30 @@ body {
 
 /* Hero Section */
 .hero {
-    /* Reduzimos o padding para 30px no topo e 40px na base */
-    padding: 20px 0 40px; 
-    
-    background:
-        radial-gradient(
-            circle at top right,
-            rgba(99, 102, 241, 0.18),
-            transparent 40%
-        ),
-        radial-gradient(
-            circle at bottom left,
-            rgba(168, 85, 247, 0.12),
-            transparent 35%
-        ),
-        #020617;
-    position: relative;
-    overflow: hidden;
+  padding: 20px 0 40px;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(99, 102, 241, 0.18),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(168, 85, 247, 0.12),
+      transparent 35%
+    ),
+    #020617;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 40px;
-    align-items: center;
-    padding-top: 20px; /* Reduzido de 60px para 20px */
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+  padding-top: 20px;
 }
 /* =========================
    CODE WINDOW / TERMINAL
@@ -182,7 +175,7 @@ body {
 
 /* Features Section */
 .features {
-    padding: 40px 0; /* Espaço pequeno para o título aparecer logo */
+  padding: 40px 0;
 }
 
 .hero::before {
@@ -212,10 +205,10 @@ body {
 }
 
 h1 {
-    font-size: 3.2rem;
-    margin-top: 1.5rem;
-    line-height: 1.1;
-    max-width: 520px; /* Evita que o título espalhe demais */
+  font-size: 3.2rem;
+  margin-top: 1.5rem;
+  line-height: 1.1;
+  max-width: 520px;
 }
 
 h1 span {
@@ -228,10 +221,10 @@ h1 span {
 }
 
 .hero-text p {
-    color: var(--text-muted);
-    font-size: 1.05rem;
-    margin: 1.5rem 0 2.5rem;
-    max-width: 480px; /* Deixa o texto em um bloco compacto */
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin: 1.5rem 0 2.5rem;
+  max-width: 480px;
 }
 
 .hero-btns {
@@ -278,13 +271,13 @@ h1 span {
 
 /* Features Section */
 .features {
-  padding-top: 20px; /* Estava 40px ou 60px, diminuímos para subir o título */
+  padding-top: 20px;
   padding-bottom: 55px;
 }
 
 .section-header {
-    text-align: center;
-    margin-bottom: 30px; 
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .feature-grid {
@@ -312,17 +305,17 @@ h1 span {
 }
 
 .card svg {
-    color: var(--primary); /* Usa a variável que você já definiu para o site */
-    display: block;
-    margin-bottom: 20px;
+  color: var(--primary);
+  display: block;
+  margin-bottom: 20px;
 }
 
-.card i, 
+.card i,
 .feature-icon i {
-    font-size: 2.5rem;
-    color: var(--primary); 
-    margin-bottom: 20px;
-    display: inline-block; 
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 20px;
+  display: inline-block;
 }
 
 .card h3 {
@@ -337,26 +330,25 @@ h1 span {
 .status-section {
   margin-bottom: 100px;
 }
-/* 5. STATUS BAR: Ajustando o visual de container isolado */
+
 .status-bar {
-    margin-top: 40px;
-    width: 100%;
-    background: rgba(15, 23, 42, 0.4); 
-    padding: 22px 40px;
-    border-radius: 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 40px;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.4);
+  padding: 22px 40px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Ajuste para mobile para não quebrar os itens */
 @media (max-width: 768px) {
-    .status-bar {
-        flex-direction: column;
-        gap: 15px;
-        padding: 20px;
-    }
+  .status-bar {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
 }
 
 .status-item {
@@ -389,127 +381,112 @@ h1 span {
 }
 
 /* Contact Form */
-/* Restaura o layout de duas colunas */
 .contact-section {
-    /* O segredo está aqui: */
-    display: block;
-    position: relative;
-    
-    /* Um padding-top grande para empurrar o conteúdo para baixo */
-    padding-top: 40px; 
-    
-    /* Uma margem negativa igual para puxar a seção inteira para cima */
-    margin-top: -50px; 
+  display: block;
+  position: relative;
 
-    padding-bottom: 40px;
-    
-    /* Garante que o fundo não cubra a seção anterior */
-    background-clip: padding-box; 
-    
-    padding-bottom: 120px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 40px;
+
+  margin-top: -50px;
+
+  padding-bottom: 40px;
+
+  background-clip: padding-box;
+
+  padding-bottom: 120px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .contact-card {
-    background: linear-gradient(145deg, #1e293b, #0f172a);
-    padding: 60px;
-    border-radius: 32px;
-    display: grid;
-    grid-template-columns: 1fr 1.5fr; /* Mantém a proporção original */
-    gap: 4rem;
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  padding: 60px;
+  border-radius: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
 }
 
-.input-group { 
-    margin-bottom: 1.5rem; 
+.input-group {
+  margin-bottom: 1.5rem;
 }
 
-.input-group label { 
-    display: block; 
-    margin-bottom: 8px; 
-    color: var(--text-muted); 
-    font-size: 0.9rem; 
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
 }
 
 /* Estilo original dos campos */
-input, 
+input,
 textarea {
-    width: 100%;
-    padding: 14px 18px;
-    /* Cor de fundo mais profissional (Slate 900/800) */
-    background: rgba(15, 23, 42, 0.7); 
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    color: #f8fafc; /* Branco levemente azulado */
-    font-family: inherit;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-    
-    /* REMOVE O REDIMENSIONAMENTO DA MENSAGEM */
-    resize: none; 
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #f8fafc;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+
+  resize: none;
 }
 
-input:focus, 
+input:focus,
 textarea:focus {
-    outline: none;
-    border-color: var(--primary);
-    background: rgba(30, 41, 59, 0.9);
-    /* Um brilho sutil para destacar o campo ativo */
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  outline: none;
+  border-color: var(--primary);
+  background: rgba(30, 41, 59, 0.9);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
-/* Resolve fundo branco, texto preto e cursor preto no Autofill */
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus {
-    /* Força a cor do texto para branco - usando !important duplo se necessário */
-    -webkit-text-fill-color: #f8fafc !important;
-    color: #f8fafc !important;
-    
-    /* Força o cursor a ser branco */
-    caret-color: #f8fafc !important;
+  -webkit-text-fill-color: #f8fafc !important;
+  color: #f8fafc !important;
 
-    /* A transição mantém o fundo escuro */
-    transition: background-color 5000s ease-in-out 0s;
-    
-    /* Remove qualquer sombra interna que possa estar pintando o fundo de preto/branco */
-    box-shadow: inset 0 0 0px 9999px transparent !important;
-    
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  caret-color: #f8fafc !important;
+
+  transition: background-color 5000s ease-in-out 0s;
+
+  box-shadow: inset 0 0 0px 9999px transparent !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Garante o brilho de foco e reforça o texto branco no clique */
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill:focus {
-    border-color: var(--primary) !important;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15), inset 0 0 0px 9999px transparent !important;
-    -webkit-text-fill-color: #f8fafc !important;
+  border-color: var(--primary) !important;
+  box-shadow:
+    0 0 0 3px rgba(99, 102, 241, 0.15),
+    inset 0 0 0px 9999px transparent !important;
+  -webkit-text-fill-color: #f8fafc !important;
 }
 
-/* Garante que a borda de foco continue funcionando mesmo no preenchimento automático */
 input:-webkit-autofill:focus {
-    border-color: var(--primary) !important;
+  border-color: var(--primary) !important;
 }
 
-/* Garante que o botão ocupe toda a largura da coluna do form */
 .full-width {
-    width: 100%;
+  width: 100%;
 }
 
-/* Responsivo para celulares (volta para uma coluna) */
 @media (max-width: 968px) {
-    .contact-card { 
-        grid-template-columns: 1fr; 
-        text-align: center; 
-        padding: 40px 20px;
-    }
+  .contact-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 40px 20px;
+  }
 }
 
 ::placeholder {
-    color: #64748b;
-    opacity: 1;
+  color: #64748b;
+  opacity: 1;
 }
 
 /* Feedback */
@@ -587,82 +564,73 @@ footer {
 
 /* Responsive */
 @media (max-width: 968px) {
-    /* 1. Ajuste do Container da Hero */
-    .hero {
-        padding: 60px 0 40px; /* Mais espaço no topo para não colar no topo do celular */
-        text-align: center;
-    }
+  .hero {
+    padding: 60px 0 40px;
+    text-align: center;
+  }
 
-    .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    /* 2. Ajuste de Textos (Removendo travas de largura e centralizando) */
-    h1 {
-        font-size: 2.2rem; /* Tamanho mais amigável para telas pequenas */
-        margin: 1rem auto;
-        max-width: 100%; /* Permite ocupar a largura central */
-        line-height: 1.2;
-    }
+  h1 {
+    font-size: 2.2rem;
+    margin: 1rem auto;
+    max-width: 100%;
+    line-height: 1.2;
+  }
 
-    .hero-text p {
-        margin: 1rem auto 2rem;
-        max-width: 100%;
-        font-size: 1rem;
-    }
+  .hero-text p {
+    margin: 1rem auto 2rem;
+    max-width: 100%;
+    font-size: 1rem;
+  }
 
-    /* 3. Botões Empilhados (Melhor para UX Mobile) */
-    .hero-btns {
-        flex-direction: column; /* Botões um em cima do outro */
-        align-items: stretch; /* Botões ocupam a mesma largura */
-        gap: 12px;
-        width: 100%;
-        max-width: 300px; /* Limita a largura do conjunto de botões */
-        margin: 0 auto;
-    }
+  .hero-btns {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
 
-    /* 4. Card de Código Centralizado */
-    .hero-visual {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-    }
+  .hero-visual {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
 
-    .modern-code-card {
-        max-width: 100%; /* Ajusta à largura do celular */
-        padding: 16px;
-    }
+  .modern-code-card {
+    max-width: 100%;
+    padding: 16px;
+  }
 
-    /* 5. Navbar Mobile */
-    .nav-links {
-        display: none; /* Como você já tinha, mas garante que o logo centralize se necessário */
-    }
-    
-    .nav-content {
-        justify-content: center;
-    }
+  .nav-links {
+    display: none;
+  }
+
+  .nav-content {
+    justify-content: center;
+  }
 }
 
-/* Ajuste fino para telas muito pequenas (iPhone SE, etc) */
 @media (max-width: 480px) {
-    h1 {
-        font-size: 1.8rem;
-    }
-    
-    .container {
-        padding: 0 20px; /* Reduz o recuo lateral para ganhar espaço útil */
-    }
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
 }
 
 /* Feedback Message */
-
-/* Feedback Message */
-
 .feedback {
   margin-top: 1rem;
   padding: 14px 18px;
@@ -724,29 +692,29 @@ footer {
    CODE WINDOW / TERMINAL
 ========================= */
 .hero-text {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-visual {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
 }
 
 section {
-    position: relative;
+  position: relative;
 }
 
 .card,
 .contact-card,
 .status-bar {
-    backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
 
 .card,
 .contact-card,
 .status-bar {
-    backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
 
 /* =========================
@@ -754,23 +722,22 @@ section {
 ========================= */
 
 .modern-code-card {
-    background: rgba(10, 15, 35, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    padding: 20px 24px; /* Diminuí o primeiro valor (topo) de 24px para 20px */
-    
-    width: 100%;
-    max-width: 430px;
-    
-    /* Mude a altura mínima se o card estiver parecendo "vazio" demais embaixo */
-    min-height: 120px; /* Reduzi de 170px para 120px */
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Garante que comece do topo */
-    
-    backdrop-filter: blur(12px);
-    box-shadow: 0 0 40px rgba(99, 102, 241, 0.15);
+  background: rgba(10, 15, 35, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 20px 24px;
+
+  width: 100%;
+  max-width: 430px;
+
+  min-height: 120px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 40px rgba(99, 102, 241, 0.15);
 }
 .window-header {
   display: flex;
@@ -799,18 +766,18 @@ section {
 }
 
 .code-content {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 0; /* Garante que não haja espaço extra acima do POST */
-    font-family: "Fira Code", monospace;
-    font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 0;
+  font-family: "Fira Code", monospace;
+  font-size: 1rem;
 }
 
 .method {
-    color: #8b5cf6;
-    font-weight: 700;
-    font-size: 1rem; 
+  color: #8b5cf6;
+  font-weight: 700;
+  font-size: 1rem;
 }
 
 .endpoint {
