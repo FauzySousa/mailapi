@@ -457,21 +457,32 @@ textarea:focus {
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
-/* Resolve o fundo branco ao selecionar sugestões (Autofill) */
+/* Resolve fundo branco, texto preto e cursor preto no Autofill */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus {
-    /* Altera a cor do texto para branco */
+    /* Força a cor do texto para branco */
     -webkit-text-fill-color: #f8fafc !important;
     
-    /* Cria um efeito que substitui a cor de fundo pelo seu tom escuro */
+    /* Força a cor do cursor (o traço) para branco ou a cor do seu tema */
+    caret-color: #f8fafc !important;
+
+    /* Mantém o fundo escuro */
     transition: background-color 5000s ease-in-out 0s;
     
-    /* Garante que a borda continue com o estilo do seu tema */
+    /* Garante a borda padrão */
     border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Remove sombras internas do sistema */
+    box-shadow: inset 0 0 0px 9999px transparent;
+}
+
+/* Força a cor do texto e do cursor em estados normais também, por segurança */
+input, textarea {
+    caret-color: var(--primary); /* O traço fica na cor roxa/azul do seu tema */
 }
 
 /* Garante que a borda de foco continue funcionando mesmo no preenchimento automático */
