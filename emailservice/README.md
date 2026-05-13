@@ -1,337 +1,531 @@
-<div align="center">
-
-# 🚀 MailAPI
-
-### API profissional de envio de e-mails com Java + Spring Boot
+# <p align="center">🚀 MailAPI</p>
 
 <p align="center">
-Backend robusto, frontend moderno responsivo, proteção contra spam, retry automático,
-documentação Swagger/OpenAPI e arquitetura preparada para ambientes enterprise.
+  API profissional de envio de e-mails desenvolvida com Spring Boot
 </p>
 
-<br>
-
-<img src="https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk" />
-<img src="https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge&logo=springboot" />
-<img src="https://img.shields.io/badge/Thymeleaf-005F0F?style=for-the-badge&logo=thymeleaf" />
-<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker" />
-<img src="https://img.shields.io/badge/Swagger-OpenAPI-85EA2D?style=for-the-badge&logo=swagger" />
-<img src="https://img.shields.io/badge/Status-Production_Ready-success?style=for-the-badge" />
-
-<br><br>
-
-<img width="100%" src="https://via.placeholder.com/1200x500/0f172a/ffffff?text=MailAPI+Preview" />
-
-</div>
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk" />
+  <img src="https://img.shields.io/badge/Spring_Boot-3.3.2-6DB33F?style=for-the-badge&logo=springboot" />
+  <img src="https://img.shields.io/badge/Swagger-OpenAPI-85EA2D?style=for-the-badge&logo=swagger" />
+  <img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker" />
+  <img src="https://img.shields.io/badge/Thymeleaf-Frontend-005F0F?style=for-the-badge&logo=thymeleaf" />
+  <img src="https://img.shields.io/badge/Resend-Email_API-black?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Status-Online-success?style=for-the-badge" />
+</p>
 
 ---
 
-# 📚 Sumário
+# 🌐 Preview do Sistema
 
-- [📖 Sobre o Projeto](#-sobre-o-projeto)
-- [⚙️ Tecnologias](#️-tecnologias)
-- [✨ Funcionalidades](#-funcionalidades)
-- [🏗 Arquitetura](#-arquitetura)
-- [🔐 Segurança](#-segurança)
-- [🚦 Rate Limiting](#-rate-limiting)
-- [🔁 Retry Automático](#-retry-automático)
-- [📡 Endpoints](#-endpoints)
-- [📦 Estrutura de Pastas](#-estrutura-de-pastas)
-- [🐳 Docker](#-docker)
-- [📑 Swagger/OpenAPI](#-swaggeropenapi)
-- [📊 Monitoramento](#-monitoramento)
-- [🚀 Como Executar](#-como-executar)
-- [🌍 Variáveis de Ambiente](#-variáveis-de-ambiente)
-- [📨 Configuração SMTP](#-configuração-smtp)
-- [📬 Exemplo de Requisição](#-exemplo-de-requisição)
-- [📨 Exemplo de Resposta](#-exemplo-de-resposta)
-- [✅ Boas Práticas Aplicadas](#-boas-práticas-aplicadas)
-- [🛣 Features Futuras](#-features-futuras)
-- [☁️ Deploy](#️-deploy)
-- [👨‍💻 Autor](#-autor)
-- [📄 Licença](#-licença)
+<p align="center">
+  <img src="./docs/preview.gif" width="100%" />
+</p>
+
+<p align="center">
+  <img src="./docs/home.png" width="900"/>
+</p>
 
 ---
 
-# 📖 Sobre o Projeto
+# ✨ Sobre o Projeto
 
-O **MailAPI** é uma API RESTful profissional desenvolvida para gerenciamento e envio de e-mails utilizando o ecossistema Spring.
+A **MailAPI** é uma API profissional de envio de e-mails desenvolvida com **Java + Spring Boot**, criada para fornecer uma solução moderna, escalável e resiliente para aplicações que necessitam de comunicação por e-mail.
 
-O projeto foi construído com foco em:
+O projeto foi arquitetado utilizando conceitos avançados de backend, incluindo:
 
-- ✅ Arquitetura limpa
-- ✅ Escalabilidade
-- ✅ Segurança
-- ✅ Resiliência
-- ✅ Boas práticas enterprise
-- ✅ Performance
-- ✅ Experiência do usuário
+* Processamento assíncrono
+* Retry automático
+* Rate limiting
+* Monitoramento
+* Tratamento global de exceções
+* Documentação OpenAPI
+* Containerização com Docker
 
-Além do backend robusto, o sistema também possui um frontend institucional moderno integrado diretamente à API utilizando Thymeleaf.
-
----
-
-# ⚙️ Tecnologias
-
-| Tecnologia | Descrição |
-|---|---|
-| Java 21 | Linguagem principal |
-| Spring Boot | Framework backend |
-| Spring Web | API REST |
-| Spring Validation | Validação de dados |
-| Thymeleaf | Renderização HTML |
-| Java Mail Sender | Envio de e-mails |
-| Spring Retry | Retry automático |
-| Bucket4j | Rate limiting |
-| Swagger/OpenAPI | Documentação |
-| Spring Actuator | Monitoramento |
-| Docker | Containerização |
-| Maven | Gerenciamento de dependências |
+Além da API REST, o sistema possui uma interface moderna desenvolvida com **Thymeleaf**, permitindo testes reais diretamente pelo navegador.
 
 ---
 
-# ✨ Funcionalidades
-
-## 📬 Sistema de E-mails
-
-- Envio de e-mails HTML
-- Processamento assíncrono
-- Retry automático em falhas SMTP
-- Templates HTML com Thymeleaf
-- Logs estruturados
-- Tratamento global de erros
-
-## 🌐 Frontend Integrado
-
-- Landing page institucional
-- Formulário de contato
-- Feedback visual em tempo real
-- Interface responsiva
-- Integração completa com API REST
-
-## 🔒 Segurança
-
-- Proteção contra spam
-- Rate limiting por IP
-- Estrutura preparada para API Key
-- Tratamento global de exceções
-- Validação robusta de entrada
-
----
-
-# 🏗 Arquitetura
+# 🏛️ Arquitetura da Aplicação
 
 ```text
-Cliente/Frontend
-        │
-        ▼
-Controller Layer
-        │
-        ▼
+Frontend (Thymeleaf)
+        ↓
+REST Controller
+        ↓
 Service Layer
-        │
-        ▼
-Async Executor + Retry
-        │
-        ▼
-SMTP Provider
+        ↓
+Retry + Async Executor
+        ↓
+Resend Email API
+```
 
-📡 Endpoints
-📧 Enviar E-mail
-POST /api/v1/emails/send
-Request Body
-{
-  "to": "destinatario@email.com",
-  "subject": "Bem-vindo",
-  "body": "<h1>Olá Mundo</h1>"
-}
+---
 
-📨 Formulário de Contato
-POST /api/v1/emails/contact
-Request Body
-{
-  "name": "Fauzy Sousa",
-  "senderEmail": "fauzy@email.com",
-  "message": "Olá, gostaria de conhecer sua API."
-}
+# 📐 Fluxo Arquitetural
 
-🔐 Segurança
-Recurso	Implementação
-Rate Limit	Bucket4j
-Validação	Bean Validation
-Retry	Spring Retry
-Tratamento Global	@RestControllerAdvice
-Logs	SLF4J
-Async	@Async
-🚦 Rate Limiting
+```mermaid
+graph TD
 
-Proteção contra spam e abuso utilizando Bucket4j.
-Configuração Atual
-✅ 5 requisições por minuto por IP
-✅ Bloqueio automático
-✅ Resposta HTTP 429
-Exemplo de resposta
-{
-  "error": "Limite de requisições excedido. Tente novamente em 1 minuto."
-}
+A[Frontend Thymeleaf] --> B[MailController]
+B --> C[MailService]
+C --> D[Async Executor]
+C --> E[Retry Mechanism]
+C --> F[Resend API]
+B --> G[Rate Limit Filter]
+B --> H[Validation Layer]
+B --> I[Global Exception Handler]
+```
 
-🔁 Retry Automático
-A API possui retry automático para falhas SMTP temporárias.
-Estratégia
-✅ Máximo de 3 tentativas
-✅ Backoff exponencial
-✅ Delay progressivo
-✅ Recover para falha definitiva
+---
 
-📦 Estrutura de Pastas
+# 🧠 Conceitos Aplicados
+
+* Clean Code
+* Layered Architecture
+* DTO Pattern
+* RESTful API
+* Async Processing
+* Retry Pattern
+* Rate Limiting
+* Dockerization
+* Validation Layer
+* OpenAPI Documentation
+* Exception Handling
+* Monitoring & Observability
+* Logging Strategy
+* Environment Variables
+* Separation of Concerns
+
+---
+
+# 🧠 Principais Funcionalidades
+
+## ✅ Envio de E-mails HTML
+
+Permite envio de mensagens HTML personalizadas via API.
+
+---
+
+## ✅ Processamento Assíncrono
+
+Uso de `@Async` com `ThreadPoolTaskExecutor` para evitar bloqueios na thread principal.
+
+```java
+@Async("mailExecutor")
+```
+
+---
+
+## ✅ Retry Inteligente
+
+Sistema de retry automático com backoff exponencial.
+
+```java
+@Retryable(
+    retryFor = {EmailSendingException.class},
+    maxAttempts = 3,
+    backoff = @Backoff(delay = 2000, multiplier = 2)
+)
+```
+
+---
+
+## ✅ Proteção Contra Spam
+
+Rate limiting implementado utilizando Bucket4j.
+
+* 5 requisições por minuto
+* Controle por IP
+* HTTP 429
+* Headers personalizados
+
+---
+
+## ✅ Swagger/OpenAPI
+
+Documentação interativa da API para testes rápidos.
+
+---
+
+## ✅ Docker Ready
+
+Aplicação totalmente containerizada para ambientes modernos.
+
+---
+
+## ✅ Monitoramento
+
+Integração com Spring Boot Actuator.
+
+---
+
+## ✅ Tratamento Global de Exceções
+
+Estrutura padronizada de erros para APIs profissionais.
+
+---
+
+## ✅ Logs Estruturados
+
+Logs detalhados para observabilidade e debugging.
+
+---
+
+# 📊 Métricas Técnicas
+
+| Métrica          | Valor           |
+| ---------------- | --------------- |
+| Java Version     | 21              |
+| Framework        | Spring Boot 3   |
+| API Style        | REST            |
+| Build Tool       | Maven           |
+| Container        | Docker          |
+| Template Engine  | Thymeleaf       |
+| Documentation    | Swagger/OpenAPI |
+| Architecture     | Layered         |
+| Async Processing | Sim             |
+| Retry Mechanism  | Sim             |
+| Rate Limiting    | Sim             |
+| Monitoring       | Spring Actuator |
+| Testing          | JUnit + Mockito |
+| Email Provider   | Resend          |
+
+---
+
+# 🛡️ Segurança e Resiliência
+
+A aplicação foi desenvolvida com foco em confiabilidade, estabilidade e proteção contra falhas.
+
+## Recursos implementados
+
+* Retry automático em falhas temporárias
+* Rate limiting por IP
+* Tratamento global de exceções
+* Logs estruturados
+* Validação de payload
+* Processamento assíncrono
+* Uso de variáveis de ambiente
+* Controle de concorrência
+* Executor customizado
+* Proteção contra spam
+
+---
+
+# 🏗️ Estrutura do Projeto
+
+```bash
 src
  ┣ main
- ┃ ┣ java
- ┃ ┃ ┗ com.fauzy.emailservice
+ ┃ ┣ java/com/fauzy/emailservice
  ┃ ┃ ┣ config
  ┃ ┃ ┣ controller
  ┃ ┃ ┣ dto
  ┃ ┃ ┣ exception
  ┃ ┃ ┣ service
- ┃ ┃ ┗ service.impl
+ ┃ ┃ ┗ service/impl
  ┃ ┣ resources
  ┃ ┃ ┣ static
- ┃ ┃ ┃ ┣ css
- ┃ ┃ ┃ ┣ js
- ┃ ┃ ┃ ┗ images
  ┃ ┃ ┣ templates
- ┃ ┃ ┃ ┣ index.html
- ┃ ┃ ┃ ┗ contact-template.html
  ┃ ┃ ┗ application.properties
- ┗ test
-   ┗ java
+ ┣ test
+ ┃ ┗ java/com/fauzy/emailservice
+```
 
-🐳 Docker
-Build da imagem
-docker build -t mailapi .
-Executar container
-docker run -p 8080:8080 mailapi
+---
 
-📑 Swagger/OpenAPI
-Documentação interativa disponível em:
-http://localhost:8080/swagger-ui.html
+# ⚙️ Tecnologias Utilizadas
 
-📊 Monitoramento
-O projeto utiliza Spring Boot Actuator para monitoramento.
-Endpoints disponíveis
-/actuator/health
-/actuator/info
-/actuator/metrics
+| Tecnologia        | Descrição                     |
+| ----------------- | ----------------------------- |
+| Java 21           | Linguagem principal           |
+| Spring Boot 3     | Framework backend             |
+| Spring Web        | Construção da API REST        |
+| Spring Validation | Validação de dados            |
+| Spring Retry      | Retry automático              |
+| Spring Async      | Processamento assíncrono      |
+| Thymeleaf         | Frontend server-side          |
+| Swagger/OpenAPI   | Documentação                  |
+| Bucket4j          | Rate limiting                 |
+| Docker            | Containerização               |
+| Maven             | Gerenciamento de dependências |
+| Resend API        | Serviço de e-mails            |
+| Lombok            | Redução de boilerplate        |
+| JUnit + Mockito   | Testes unitários              |
 
-🚀 Como Executar
-1️⃣ Clonar repositório
-git clone https://github.com/seuusuario/mailapi.git
-2️⃣ Entrar no projeto
-cd mailapi
-3️⃣ Executar aplicação
-./mvnw spring-boot:run
+---
 
-🌍 Variáveis de Ambiente
-server.port=8080
+# 📬 Endpoints da API
 
-spring.mail.host=smtp.gmail.com
-spring.mail.port=587
-spring.mail.username=SEU_EMAIL
-spring.mail.password=SUA_SENHA
+## 📨 Enviar E-mail
 
-spring.mail.properties.mail.smtp.auth=true
-spring.mail.properties.mail.smtp.starttls.enable=true
+```http
+POST /api/v1/emails/send
+```
 
-📨 Configuração SMTP
-O projeto utiliza SMTP do Gmail.
-Requisitos
-Ativar autenticação em 2 fatores
-Criar senha de aplicativo Google
+### Request
 
-📬 Exemplo de Requisição
-Curl — Envio de E-mail
-curl --request POST \
-  --url http://localhost:8080/api/v1/emails/send \
-  --header 'Content-Type: application/json' \
-  --data '{
-    "to": "user@email.com",
-    "subject": "Teste",
-    "body": "<h1>Email enviado com sucesso</h1>"
-}'
+```json
+{
+  "to": "user@email.com",
+  "subject": "Bem-vindo",
+  "body": "<h1>Olá Mundo</h1>"
+}
+```
 
-📨 Exemplo de Resposta
-✅ Sucesso
+### Response
+
+```json
 {
   "message": "E-mail encaminhado para processamento",
-  "timestamp": "2026-05-08T14:22:10"
+  "timestamp": "2026-05-12T20:00:00"
 }
-❌ Erro de Validação
+```
+
+---
+
+## 📩 Formulário de Contato
+
+```http
+POST /api/v1/emails/contact
+```
+
+### Request
+
+```json
+{
+  "name": "Fauzy",
+  "senderEmail": "fauzy@email.com",
+  "message": "Olá!"
+}
+```
+
+---
+
+# ❌ Tratamento de Erros
+
+Exemplo de resposta padronizada:
+
+```json
 {
   "status": 400,
   "error": "Validation Error",
-  "message": "E-mail inválido",
+  "message": "O e-mail é obrigatório",
   "path": "/api/v1/emails/send",
-  "timestamp": "2026-05-08T14:22:10"
+  "timestamp": "2026-05-12T20:00:00"
 }
+```
 
-✅ Boas Práticas Aplicadas
-✔ Clean Code
-✔ DTO Pattern
-✔ Separation of Concerns
-✔ Async Processing
-✔ Retry Pattern
-✔ Global Exception Handler
-✔ Structured Logging
-✔ Validation Layer
-✔ Layered Architecture
-✔ RESTful API Design
-✔ Dockerização
-✔ Documentação Swagger
-✔ Responsividade no Frontend
-✔ Rate Limiting
-✔ Monitoramento com Actuator
+---
 
-🛣 Features Futuras
- Integração com RabbitMQ
- Integração com Kafka
- API Key Authentication
- JWT Authentication
- Dashboard administrativo
- Persistência em banco de dados
- Histórico de e-mails enviados
- Sistema de filas
- Templates dinâmicos
- Observabilidade com Prometheus + Grafana
- Deploy Kubernetes
- Integração AWS SES
+# 📄 Swagger/OpenAPI
 
-☁️ Deploy
-Plataforma	Compatível
-Docker	       ✅
-Render	       ✅
-Railway	       ✅
-AWS	           ✅
-Azure	       ✅
-DigitalOcean   ✅
+Documentação automática disponível em:
 
-👨‍💻 Autor
-Fauzy Sousa
-Backend Developer Java & Spring Boot
-🌐 Redes
-GitHub: https://github.com/seuusuario
-LinkedIn: https://linkedin.com/in/seuperfil
+```bash
+/swagger-ui.html
+```
 
-📄 Licença
+---
+
+# 🌍 Deploy Online
+
+## API Online
+
+```bash
+https://mailapi-production-f9f2.up.railway.app
+```
+
+## Swagger
+
+```bash
+https://mailapi-production-f9f2.up.railway.app/swagger-ui/index.html
+```
+
+---
+
+# 🐳 Docker
+
+## Build da imagem
+
+```bash
+docker build -t mailapi .
+```
+
+---
+
+## Executar container
+
+```bash
+docker run -d \
+  -p 8080:8080 \
+  -e MAIL_PASSWORD=sua_api_key \
+  --name mailapi \
+  mailapi
+```
+
+---
+
+## Ver logs
+
+```bash
+docker logs -f mailapi
+```
+
+---
+
+# 🔐 Variáveis de Ambiente
+
+```properties
+PORT=8080
+
+MAIL_PASSWORD=sua_api_key_resend
+
+SPRING_MAIL_FROM=onboarding@resend.dev
+```
+
+---
+
+# 📊 Observabilidade
+
+Monitoramento via Spring Actuator:
+
+```properties
+management.endpoints.web.exposure.include=health,info,metrics
+```
+
+Endpoints disponíveis:
+
+```bash
+/actuator/health
+/actuator/info
+/actuator/metrics
+```
+
+---
+
+# 🧪 Estratégia de Testes
+
+A aplicação possui testes unitários focados em:
+
+* Controllers
+* Fluxo de requisições HTTP
+* Validação de endpoints
+* Respostas da API
+* Integração MockMvc
+
+Exemplo:
+
+```java
+mockMvc.perform(post("/api/v1/emails/send"))
+```
+
+---
+
+# 🚀 Como Executar Localmente
+
+## Clonar repositório
+
+```bash
+git clone https://github.com/FauzySousa/mailapi.git
+```
+
+---
+
+## Entrar na pasta
+
+```bash
+cd emailservice
+```
+
+---
+
+## Executar aplicação
+
+```bash
+./mvnw spring-boot:run
+```
+
+---
+
+# 📌 Status do Projeto
+
+✅ API REST funcional
+✅ Frontend institucional
+✅ Retry automático
+✅ Async processing
+✅ Rate limiting
+✅ Docker Ready
+✅ Swagger/OpenAPI
+✅ Monitoramento
+✅ Testes unitários
+✅ Deploy Ready
+
+---
+
+# 🔮 Melhorias Futuras
+
+* Pipeline CI/CD
+* Testes de integração
+* Cobertura de testes
+* Kubernetes Deploy
+* Sistema de filas
+* Dashboard administrativo
+* Autenticação JWT
+* Métricas avançadas
+
+---
+
+# 👨‍💻 Autor
+
+## Fauzy Sousa
+
+Backend Developer focado em:
+
+* Java
+* Spring Boot
+* APIs REST
+* Microsserviços
+* Docker
+* Arquitetura Backend
+
+---
+
+# 🔗 Links
+
+## GitHub
+
+```bash
+https://github.com/FauzySousa
+```
+
+## LinkedIn
+
+```bash
+https://www.linkedin.com/in/fauzy-sousa-974a98409
+```
+
+---
+
+# ⭐ Objetivo do Projeto
+
+Este projeto foi desenvolvido com foco em:
+
+* Portfólio profissional
+* Demonstração de arquitetura backend moderna
+* Aplicação de boas práticas
+* APIs resilientes
+* Observabilidade
+* Experiência próxima ao mercado real
+
+---
+
+# 📜 Licença
+
 Este projeto está sob a licença MIT.
 
-⭐ Considerações Finais
-O MailAPI foi desenvolvido com foco em arquitetura profissional, escalabilidade e boas práticas modernas do ecossistema Spring.
-O projeto demonstra conhecimentos sólidos em:
-APIs REST
-Backend Java
-Segurança
-Docker
-Observabilidade
-Resiliência
-Processamento assíncrono
-Arquitetura enterprise
+---
+
+<p align="center">
+  Desenvolvido com ❤️ por Fauzy Sousa
+</p>
