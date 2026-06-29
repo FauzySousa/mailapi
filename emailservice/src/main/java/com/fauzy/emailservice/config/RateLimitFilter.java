@@ -39,7 +39,7 @@ public class RateLimitFilter extends OncePerRequestFilter{
         
                 String path = request.getRequestURI();
 
-                if (!path.equals("api/v1/emails/contact")) {
+                if (!path.equals("/api/v1/emails/contact")) {
                     filterChain.doFilter(request, response);
                     return;
                 }

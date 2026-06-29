@@ -39,6 +39,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const mensagem = document.getElementById("message").value;
 
     try {
+
+      console.log("Nome:", nome);
+      console.log("Email:", email);
+      console.log("Telefone:", telefone);
+      console.log("Mensagem:", mensagem);
+
+      console.log("JSON enviado:");
+      console.log(JSON.stringify({
+          name: nome,
+          senderEmail: email,
+          phone: telefone,
+          message: mensagem
+      }));
+
+
       const response = await fetch("/api/v1/emails/contact", {
         method: "POST",
 
