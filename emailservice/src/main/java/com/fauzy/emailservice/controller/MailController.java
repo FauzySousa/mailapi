@@ -60,6 +60,7 @@ public class MailController {
     )
     @PostMapping("/contact")
     public ResponseEntity<EmailResponseDto> contactForm(@RequestBody @Valid ContactRequestDto request) throws MessagingException {
+        log.info("######## VERSÃO 2.0 - DEPLOY 29/06 ########");
         mailService.processContactForm(request);
         return ResponseEntity.accepted().body(
             new EmailResponseDto("Fomulário de contato recebido", LocalDateTime.now())
