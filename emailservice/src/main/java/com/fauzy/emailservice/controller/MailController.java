@@ -59,8 +59,10 @@ public class MailController {
         description = "Fomulário processado com sucesso"
     )
     @PostMapping("/contact")
-    public ResponseEntity<EmailResponseDto> contactForm(@RequestBody @Valid ContactRequestDto request) throws MessagingException {
-        log.info("######## VERSÃO 2.0 - DEPLOY 29/06 ########");
+    public ResponseEntity<EmailResponseDto> contactForm(@RequestBody ContactRequestDto request) throws MessagingException {
+        log.info("######## TESTE ########");
+        log.info("DTO: {}", request);
+        log.info("Phone: {}", request.phone());
         mailService.processContactForm(request);
         return ResponseEntity.accepted().body(
             new EmailResponseDto("Fomulário de contato recebido", LocalDateTime.now())
