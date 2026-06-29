@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-  alert("SCRIPT CARREGOU");
   
   const mailForm = document.getElementById("mailForm");
   const btnSubmit = document.getElementById("btnSubmit");
@@ -23,8 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
   mailForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    alert("Entrou no submit");
-
     // loading
     btnText.textContent = "Enviando...";
 
@@ -39,7 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const email = document.getElementById("email").value;
 
-    const telefone = document.getElementById("phone").value;
+    const phoneInput = document.getElementById("phone");
+
+    console.log("Elemento phone:", phoneInput);
+    console.log("ID:", phoneInput.id);
+    console.log("NAME:", phoneInput.name);
+    console.log("VALUE:", phoneInput.value);
+
+    const telefone = phoneInput.value;
 
     const mensagem = document.getElementById("message").value;
 
@@ -58,6 +61,14 @@ document.addEventListener("DOMContentLoaded", () => {
           message: mensagem
       }));
 
+      const body = {
+      name: nome,
+      senderEmail: email,
+      phone: telefone,
+      message: mensagem
+    };
+
+console.log("BODY FINAL:", body);
 
       const response = await fetch("/api/v1/emails/contact", {
         method: "POST",
