@@ -14,7 +14,7 @@ public class OpenApiConfig {
         return new OpenAPI()
                 .info(new Info()
                         .title("Email Service API")
-                        .version("v1")
+                        .version("v2")
                         .description("API para envio de e-mails"));
     }
 }

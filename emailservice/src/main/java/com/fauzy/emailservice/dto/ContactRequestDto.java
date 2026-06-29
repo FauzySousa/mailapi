@@ -12,6 +12,9 @@ public record ContactRequestDto(
     @Email(message = "E-mail inválido")
     String senderEmail,
 
+    @NotBlank(message = "O telefone é obrigatório")
+    String phone,
+
     @NotBlank(message = "A mensagem não pode estar vazia")
     String message
 ) {}

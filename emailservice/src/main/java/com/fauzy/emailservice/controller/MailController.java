@@ -56,7 +56,7 @@ public class MailController {
     )
     @ApiResponse(
         responseCode = "202",
-        description = "Fomulário processado com suceso"
+        description = "Fomulário processado com sucesso"
     )
     @PostMapping("/contact")
     public ResponseEntity<EmailResponseDto> contactForm(@RequestBody @Valid ContactRequestDto request) throws MessagingException {

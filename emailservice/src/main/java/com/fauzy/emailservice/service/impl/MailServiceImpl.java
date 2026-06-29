@@ -89,6 +89,7 @@ public class MailServiceImpl implements MailService {
         Context context = new Context();
         context.setVariable("name", contact.name());
         context.setVariable("email", contact.senderEmail());
+        context.setVariable("phone", contact.phone());
         context.setVariable("message", contact.message());
 
         return templateEngine.process("contact-template", context);

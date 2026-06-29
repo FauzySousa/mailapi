@@ -34,6 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const email = document.getElementById("email").value;
 
+    const telefone = document.getElementById("phone").value;
+
     const mensagem = document.getElementById("message").value;
 
     try {
@@ -48,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
           name: nome,
 
           senderEmail: email,
+
+          phone: telefone,
 
           message: mensagem,
         }),
