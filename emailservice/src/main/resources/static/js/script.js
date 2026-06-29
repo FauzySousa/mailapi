@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+  alert("SCRIPT CARREGOU");
+  
   const mailForm = document.getElementById("mailForm");
   const btnSubmit = document.getElementById("btnSubmit");
   const btnText = btnSubmit.querySelector(".btn-text");
@@ -19,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // ENVIO FORMULÁRIO
   mailForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    alert("Entrou no submit");
 
     // loading
     btnText.textContent = "Enviando...";
