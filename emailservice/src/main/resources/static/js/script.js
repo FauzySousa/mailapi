@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  
   const mailForm = document.getElementById("mailForm");
   const btnSubmit = document.getElementById("btnSubmit");
   const btnText = btnSubmit.querySelector(".btn-text");
@@ -17,85 +16,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ENVIO FORMULÁRIO
+  // ENVIO DO FORMULÁRIO
   mailForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // loading
+    // Loading
     btnText.textContent = "Enviando...";
-
     loader.classList.remove("hidden");
-
     btnSubmit.style.opacity = "0.7";
-
     btnSubmit.disabled = true;
 
-    // valores
-    const nome = document.getElementById("name").value;
-
-    const email = document.getElementById("email").value;
-
-    const phoneInput = document.getElementById("phone");
-
-    console.log("Elemento phone:", phoneInput);
-    console.log("ID:", phoneInput.id);
-    console.log("NAME:", phoneInput.name);
-    console.log("VALUE:", phoneInput.value);
-
-    const telefone = phoneInput.value;
-
-    const mensagem = document.getElementById("message").value;
-
-    try {
-
-      console.log("Nome:", nome);
-      console.log("Email:", email);
-      console.log("Telefone:", telefone);
-      console.log("Mensagem:", mensagem);
-
-      console.log("JSON enviado:");
-      console.log(JSON.stringify({
-          name: nome,
-          senderEmail: email,
-          phone: telefone,
-          message: mensagem
-      }));
-
-      const body = {
-      name: nome,
-      senderEmail: email,
-      phone: telefone,
-      message: mensagem
+    // Valores
+    const body = {
+      name: document.getElementById("name").value,
+      senderEmail: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      message: document.getElementById("message").value,
     };
 
-console.log("BODY FINAL:", body);
-
+    try {
       const response = await fetch("/api/v1/emails/contact", {
         method: "POST",
-
         headers: {
           "Content-Type": "application/json",
         },
-
-        body: JSON.stringify({
-          name: nome,
-
-          senderEmail: email,
-
-          phone: telefone,
-
-          message: mensagem,
-        }),
+        body: JSON.stringify(body),
       });
 
       if (response.ok) {
         formMessage.className = "feedback success";
-
         formMessage.classList.remove("hidden");
-
         formMessage.innerHTML = `
-            <i class="ph ph-check-circle"></i>
-            E-mail enviado com sucesso!
+          <i class="ph ph-check-circle"></i>
+          E-mail enviado com sucesso!
         `;
 
         mailForm.reset();
@@ -107,12 +60,10 @@ console.log("BODY FINAL:", body);
         const errorData = await response.json();
 
         formMessage.className = "feedback error";
-
         formMessage.classList.remove("hidden");
-
         formMessage.innerHTML = `
-            <i class="ph ph-warning-circle"></i>
-            ${errorData.message || "Erro ao enviar e-mail"}
+          <i class="ph ph-warning-circle"></i>
+          ${errorData.message || "Erro ao enviar e-mail"}
         `;
 
         setTimeout(() => {
@@ -120,27 +71,22 @@ console.log("BODY FINAL:", body);
         }, 4000);
       }
     } catch (error) {
-      console.error(error);
+      console.error("Erro ao enviar formulário:", error);
 
       formMessage.className = "feedback error";
-
       formMessage.classList.remove("hidden");
-
       formMessage.innerHTML = `
         <i class="ph ph-wifi-slash"></i>
-        Erro de conexão com servidor
-    `;
+        Erro de conexão com o servidor.
+      `;
 
       setTimeout(() => {
         formMessage.classList.add("hidden");
       }, 4000);
     } finally {
       btnText.textContent = "Enviar mensagem";
-
       loader.classList.add("hidden");
-
       btnSubmit.style.opacity = "1";
-
       btnSubmit.disabled = false;
     }
   });
